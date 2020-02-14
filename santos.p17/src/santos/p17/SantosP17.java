@@ -27,7 +27,7 @@ public class SantosP17 {
     }*/
         System.out.println("Author Jose Santos");
         int option = -1;
-        int euroint, monedaint, littir, entero, number;
+        int euroint, monedaint, littir, nameBinary, number;
         float monedafloat, eurofloat;
         String monedastring, eurostring, binnir, name, result, change, hexadecimal;
         char letter;
@@ -83,21 +83,23 @@ public class SantosP17 {
                     break;
                 case 8:
                     System.out.println("What is your name?");
-                    name = "jose";//keyboard.next();
-                    entero = Integer.valueOf(name);
-                    result = solucion8(entero);
+                    name = keyboard.next();
+                    
+                    result = solucion8(name);
                     System.out.println(result);
                     break;
                 case 9:
                     System.out.println("Say me a number between 0 and 255");
-                    number = keyboard.nextInt();
+                    do{
+                        number = keyboard.nextInt();
+                        if(number <0 || number >255)System.out.println("put a number between 0 and 255, thanks");
+                    }while(number <0 || number >255);
                     change = solucion9(number);
                     System.out.println(change);
                     break;
                 case 10:
                     System.out.println("American Standard Code for Information Interchange");
-                    int I;
-                    for (I = 32; I < 64; I++) {
+                    for (int I = 32; I < 64; I++) {
                         hexadecimal = solucion10(I);
                         System.out.print(I + " - " + (char) I + " - "+ hexadecimal +"\t");
                         hexadecimal = solucion10(I+32);
@@ -152,8 +154,13 @@ public class SantosP17 {
         return binnir;
     }
 
-    private static String solucion8(int prebi) {
-        String binario = Integer.toBinaryString(prebi);
+    private static String solucion8(String name) {
+        String binario = "";
+        char ch;
+        for(int i=0; i<name.length(); i++){
+         ch = name.charAt(i);
+         binario += Integer.toBinaryString(ch)+ " ";
+        }
         return binario;
     }
 
